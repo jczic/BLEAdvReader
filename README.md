@@ -2,7 +2,7 @@
 
 ![HC²](hc2.png "HC²")
 
-Very easy to integrate and very light with one file only :
+#### Very easy to integrate and very light with one file only :
 - `"bleAdvReader.py"`
 
 #### BLEAdvReader features :
