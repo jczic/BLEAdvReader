@@ -242,26 +242,24 @@ class BLEAdvReader :
         appleType = data[0]
         dataLen   = data[1]
         data      = data[2:]
-        if dataLen != len(data) :
-            raise Exception()
         if appleType == self.APPLE_TYPE_IBEACON :
             return self.AppleIBeacon( data[:16],
                                       unpack('>H', data[16:18])[0],
                                       unpack('>H', data[18:20])[0],
                                       data[20] - 256 )
         elif appleType == self.APPLE_TYPE_AIRDROP :
-            return self.AppleService('AirDrop')
+            return self.AppleService('AirDrop', data)
         elif appleType == self.APPLE_TYPE_AIRPODS :
-            return self.AppleService('AirPods')
+            return self.AppleService('AirPods', data)
         elif appleType == self.APPLE_TYPE_AIRPLAY_DEST :
-            return self.AppleService('AirPlay Destination)')
+            return self.AppleService('AirPlay Destination', data)
         elif appleType == self.APPLE_TYPE_AIRPLAY_SRC :
-            return self.AppleService('AirPlay Source')
+            return self.AppleService('AirPlay Source', data)
         elif appleType == self.APPLE_TYPE_HANDOFF :
-            return self.AppleService('HandOff')
+            return self.AppleService('HandOff', data)
         elif appleType == self.APPLE_TYPE_NEARBY :
-            return self.AppleService('Nearby')
-        return self.AppleService('Unknown')
+            return self.AppleService('Nearby', data)
+        return self.AppleService()
 
     # ----------------------------------------------------------------------------
 
@@ -518,11 +516,23 @@ class BLEAdvReader :
 
     class AppleService :
 
-        def __init__(self, typeName='') :
+        def __init__(self, typeName='', data=b'') :
             self._typeName = typeName
+            self._data     = data
 
         def __str__(self) :
-            return 'Apple Service (%s)' % self._typeName
+            if self._typeName :
+                return 'Apple Service %s (%s)' % ( self._typeName,
+                                                   BLEAdvReader._hex(self._data) )
+            return 'Unknown Apple Service'
+
+        @property
+        def TypeName(self) :
+            return self._typeName
+
+        @property
+        def Data(self) :
+            return self._data
 
     # ============================================================================
     # ===( Class AppleIBeacon )===================================================

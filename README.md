@@ -182,7 +182,21 @@ Directly usable as string
 | Data | `mfacturerData.Data` | bytes |
 
 ### Using *BLEAdvReader.AppleService* class :
-Directly usable as string *(not implemented Apple services)*
+
+| Name | Property | Type |
+| - | - | - |
+| TypeName | `appleSvc.TypeName` | string |
+| Data | `appleSvc.Data` | bytes |
+
+| TypeName value |
+| - |
+| Empty *(unknown type)* |
+| `"AirDrop"` |
+| `"AirPods"` |
+| `"AirPlay Destination"` |
+| `"AirPlay Source"` |
+| `"HandOff"` |
+| `"Nearby"` |
 
 ### Using *BLEAdvReader.AppleIBeacon* class :
 
