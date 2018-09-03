@@ -455,6 +455,18 @@ class BLEAdvReader :
         def __str__(self) :
             return '%sdBm' % self._txPowerLvl
 
+        def GetProximityByLogTX(self, rssi, n_PathLossExp=2) :
+            return BLEAdvReader.ProximityHelper. \
+                   LogTX(rssi, self._txPowerLvl, n_PathLossExp)
+
+        def GetProximityByOldBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   OldBconTX(rssi, self._txPowerLvl)
+
+        def GetProximityByNewBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   NewBconTX(rssi, self._txPowerLvl)
+
         @property
         def DBM(self) :
             return self._txPowerLvl
@@ -553,6 +565,18 @@ class BLEAdvReader :
                                                         self._minor,
                                                         self._txPower )
 
+        def GetProximityByLogTX(self, rssi, n_PathLossExp=2) :
+            return BLEAdvReader.ProximityHelper. \
+                   LogTX(rssi, self._txPower, n_PathLossExp)
+
+        def GetProximityByOldBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   OldBconTX(rssi, self._txPower)
+
+        def GetProximityByNewBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   NewBconTX(rssi, self._txPower)
+
         @property
         def UUID(self) :
             return self._uuid
@@ -589,6 +613,18 @@ class BLEAdvReader :
                                                      BLEAdvReader._hex(self._namespace),
                                                      BLEAdvReader._hex(self._instance) )
 
+        def GetProximityByLogTX(self, rssi, n_PathLossExp=2) :
+            return BLEAdvReader.ProximityHelper. \
+                   LogTX(rssi, self._txPower, n_PathLossExp)
+
+        def GetProximityByOldBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   OldBconTX(rssi, self._txPower)
+
+        def GetProximityByNewBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   NewBconTX(rssi, self._txPower)
+
         @property
         def TxPower(self) :
             return self._txPower
@@ -613,6 +649,18 @@ class BLEAdvReader :
 
         def __str__(self) :
             return 'EddyStone URL %sdBm, %s' % (self._txPower, self._url)
+
+        def GetProximityByLogTX(self, rssi, n_PathLossExp=2) :
+            return BLEAdvReader.ProximityHelper. \
+                   LogTX(rssi, self._txPower, n_PathLossExp)
+
+        def GetProximityByOldBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   OldBconTX(rssi, self._txPower)
+
+        def GetProximityByNewBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   NewBconTX(rssi, self._txPower)
 
         @property
         def TxPower(self) :
@@ -698,6 +746,18 @@ class BLEAdvReader :
             return 'EddyStone EID %sdBm, %s' % ( self._txPower,
                                                  BLEAdvReader._hex(self._encryptedID) )
 
+        def GetProximityByLogTX(self, rssi, n_PathLossExp=2) :
+            return BLEAdvReader.ProximityHelper. \
+                   LogTX(rssi, self._txPower, n_PathLossExp)
+
+        def GetProximityByOldBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   OldBconTX(rssi, self._txPower)
+
+        def GetProximityByNewBconTX(self, rssi) :
+            return BLEAdvReader.ProximityHelper. \
+                   NewBconTX(rssi, self._txPower)
+
         @property
         def TxPower(self) :
             return self._txPower
@@ -707,10 +767,10 @@ class BLEAdvReader :
             return self._encryptedID
 
     # ============================================================================
-    # ===( Class ProximityByRSSI )================================================
+    # ===( Class ProximityHelper )================================================
     # ============================================================================
 
-    class ProximityByRSSI :
+    class ProximityHelper :
 
         @staticmethod
         def _txFormula(A, B, C, r, t) :
@@ -722,12 +782,12 @@ class BLEAdvReader :
 
         @staticmethod
         def OldBconTX(rssi, rssiTX) :
-            return BLEAdvReader.ProximityByRSSI. \
+            return BLEAdvReader.ProximityHelper. \
                    _txFormula(0.89976, 7.7095, 0.111, rssi, rssiTX)
 
         @staticmethod
         def NewBconTX(rssi, rssiTX) :
-            return BLEAdvReader.ProximityByRSSI. \
+            return BLEAdvReader.ProximityHelper. \
                    _txFormula(0.42093, 6.9476, 0.54992, rssi, rssiTX)
 
     # ============================================================================

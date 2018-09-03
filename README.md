@@ -165,6 +165,12 @@ Directly usable as string
 | - | - | - |
 | DBM | `txPower.DBM` | int |
 
+| Name | Function |
+| - | - |
+| GetProximityByLogTX | `meters = txPowerLvl.GetProximityByLogTX(rssi, n_PathLossExp=2)` |
+| GetProximityByOldBconTX | `meters = txPowerLvl.GetProximityByOldBconTX(rssi)` |
+| GetProximityByNewBconTX | `meters = txPowerLvl.GetProximityByNewBconTX(rssi)` |
+
 ### Using *BLEAdvReader.ServiceData* class :
 
 | Name | Property | Type |
@@ -208,6 +214,12 @@ Directly usable as string
 | Minor | `iBeacon.Minor` | int |
 | TxPower | `iBeacon.TxPower` | int |
 
+| Name | Function |
+| - | - |
+| GetProximityByLogTX | `meters = iBeacon.GetProximityByLogTX(rssi, n_PathLossExp=2)` |
+| GetProximityByOldBconTX | `meters = iBeacon.GetProximityByOldBconTX(rssi)` |
+| GetProximityByNewBconTX | `meters = iBeacon.GetProximityByNewBconTX(rssi)` |
+
 ### Using *BLEAdvReader.EddyStoneUID* class :
 
 | Name | Property | Type |
@@ -216,12 +228,24 @@ Directly usable as string
 | Namespace | `beaconEddyStone.Namespace` | bytes |
 | Instance | `beaconEddyStone.Instance` | bytes |
 
+| Name | Function |
+| - | - |
+| GetProximityByLogTX | `meters = beaconEddyStone.GetProximityByLogTX(rssi, n_PathLossExp=2)` |
+| GetProximityByOldBconTX | `meters = beaconEddyStone.GetProximityByOldBconTX(rssi)` |
+| GetProximityByNewBconTX | `meters = beaconEddyStone.GetProximityByNewBconTX(rssi)` |
+
 ### Using *BLEAdvReader.EddyStoneURL* class :
 
 | Name | Property | Type |
 | - | - | - |
 | TxPower | `beaconEddyStone.TxPower` | int |
 | URL | `beaconEddyStone.URL` | string |
+
+| Name | Function |
+| - | - |
+| GetProximityByLogTX | `meters = beaconEddyStone.GetProximityByLogTX(rssi, n_PathLossExp=2)` |
+| GetProximityByOldBconTX | `meters = beaconEddyStone.GetProximityByOldBconTX(rssi)` |
+| GetProximityByNewBconTX | `meters = beaconEddyStone.GetProximityByNewBconTX(rssi)` |
 
 ### Using *BLEAdvReader.EddyStoneTLMUnencrypted* class :
 
@@ -246,6 +270,20 @@ Directly usable as string
 | - | - | - |
 | TxPower | `beaconEddyStone.TxPower` | int |
 | EncryptedID | `beaconEddyStone.EncryptedID` | bytes |
+
+| Name | Function |
+| - | - |
+| GetProximityByLogTX | `meters = beaconEddyStone.GetProximityByLogTX(rssi, n_PathLossExp=2)` |
+| GetProximityByOldBconTX | `meters = beaconEddyStone.GetProximityByOldBconTX(rssi)` |
+| GetProximityByNewBconTX | `meters = beaconEddyStone.GetProximityByNewBconTX(rssi)` |
+
+### Using *BLEAdvReader.ProximityHelper* "static" class :
+
+| Name | Function |
+| - | - |
+| LogTX | `meters = BLEAdvReader.ProximityHelper.LogTX(rssi, rssiTX, n_PathLossExp=2)` |
+| OldBconTX | `meters = BLEAdvReader.ProximityHelper.OldBconTX(rssi, rssiTX)` |
+| NewBconTX | `meters = BLEAdvReader.ProximityHelper.NewBconTX(rssi, rssiTX)` |
 
 
 
