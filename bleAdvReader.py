@@ -455,6 +455,7 @@ class BLEAdvReader :
         def __str__(self) :
             return '%sdBm' % self._txPowerLvl
 
+        @property
         def DBM(self) :
             return self._txPowerLvl
 
@@ -704,6 +705,30 @@ class BLEAdvReader :
         @property
         def EncryptedID(self) :
             return self._encryptedID
+
+    # ============================================================================
+    # ===( Class ProximityByRSSI )================================================
+    # ============================================================================
+
+    class ProximityByRSSI :
+
+        @staticmethod
+        def _txFormula(A, B, C, r, t) :
+            return A * ( (r/t) ** B ) + C
+
+        @staticmethod
+        def LogTX(rssi, rssiTX, n_PathLossExp=2) :
+            return 10.0 ** ( (rssi-rssiTX) / (-10*n_PathLossExp) )
+
+        @staticmethod
+        def OldBconTX(rssi, rssiTX) :
+            return BLEAdvReader.ProximityByRSSI. \
+                   _txFormula(0.89976, 7.7095, 0.111, rssi, rssiTX)
+
+        @staticmethod
+        def NewBconTX(rssi, rssiTX) :
+            return BLEAdvReader.ProximityByRSSI. \
+                   _txFormula(0.42093, 6.9476, 0.54992, rssi, rssiTX)
 
     # ============================================================================
     # ============================================================================
