@@ -19,6 +19,10 @@
   - EddyStone TML Unencrypted
   - EddyStone TML Encrypted
   - EddyStone EID
+- Estimating device proximity with 3 equations :
+  - LogTX (path loss exponent variable)
+  - OldBconTX (on old iPhone/Android)
+  - NewBconTX (on recent iPhone/Android)
 
 ### Example of using *BLEAdvReader* easily :
 ```python
