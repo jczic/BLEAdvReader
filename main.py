@@ -24,6 +24,9 @@ while True :
         print()
         print('  - MAC ADDRESS  : %s' % mac)
         print('  - RSSI         : %s' % adv.rssi)
-        r = BLEAdvReader(adv.data)
-        for advObj in r.GetAllElements() :
-            print('  - OBJECT       : [%s] %s' % (type(advObj), advObj))
+        try :
+	        r = BLEAdvReader(adv.data)
+	        for advObj in r.GetAllElements() :
+	            print('  - OBJECT       : [%s] %s' % (type(advObj), advObj))
+	    except :
+	    	pass
