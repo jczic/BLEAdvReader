@@ -212,7 +212,7 @@ Directly usable as string
 
 | Name | Property | Type |
 | - | - | - |
-| UUID | `iBeacon.UUID` | int |
+| UUID | `iBeacon.UUID` | bytes |
 | StrUUID | `iBeacon.StrUUID` | string |
 | Major | `iBeacon.Major` | int |
 | Minor | `iBeacon.Minor` | int |
