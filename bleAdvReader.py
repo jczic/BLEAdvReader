@@ -266,12 +266,12 @@ class BLEAdvReader :
     def _getAdvObjForGoogleEddyStoneData(self, data) :
         frameType = data[0]
         if frameType == 0x00 :
-            txPower   = unpack('<b', bytes([data[1]]))
+            txPower   = unpack('<b', bytes([data[1]]))[0]
             namespace = data[2:12]
             instance  = data[12:18]
             return self.EddyStoneUID(txPower, namespace, instance)
         elif frameType == 0x10 :
-            txPower = unpack('<b', bytes([data[1]]))
+            txPower = unpack('<b', bytes([data[1]]))[0]
             url     = self._decodeURIBeacon(data[2:])
             return self.EddyStoneURL(txPower, url)
         elif frameType == 0x20 :
@@ -288,7 +288,7 @@ class BLEAdvReader :
                 mic  = unpack('>H', data[16:18])[0]
                 return self.EddyStoneTLMEncrypted(etlm, salt, mic)
         elif frameType == 0x30 :
-            txPower     = unpack('<b', bytes([data[1]]))
+            txPower     = unpack('<b', bytes([data[1]]))[0]
             encryptedID = data[2:10]
             return self.EddyStoneEID(txPower, encryptedID)
         return None
