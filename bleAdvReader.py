@@ -103,6 +103,23 @@ class BLEAdvReader :
     # ----------------------------------------------------------------------------
 
     @staticmethod
+    def _twosComp(val, bits) :
+        if val < 2**bits :
+            return val - int((val << 1) & 2**bits)
+        raise ValueError('Value %s out of range of %s-bit value.' % (val, bits))
+
+    # ----------------------------------------------------------------------------
+
+    @staticmethod
+    def _accum88(data16b) :
+        if isinstance(data16b, bytes) and len(data16b) == 2 :
+            return BLEAdvReader._twosComp(data16b[0],  8) + \
+                   BLEAdvReader._twosComp(data16b[1], 16) / 256
+        raise ValueError('%s is not a 16 bits data value.' % data16b)
+
+    # ----------------------------------------------------------------------------
+
+    @staticmethod
     def _128bitsUUID(uuidBytes) :
         if uuidBytes and len(uuidBytes) == 16 :
             s = hexlify(uuidBytes).decode()
@@ -278,7 +295,7 @@ class BLEAdvReader :
             version = data[1]
             if version == 0x00 :
                 vbatt  = unpack('>H', data[2:4])[0]
-                temp   = unpack('<h', data[4:6])[0]
+                temp   = BLEAdvReader._accum88(data[4:6])
                 advCnt = unpack('>I', data[6:10])[0]
                 secCnt = unpack('>I', data[10:14])[0]
                 return self.EddyStoneTLMUnencrypted(vbatt, temp, advCnt, secCnt)
