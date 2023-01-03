@@ -159,7 +159,7 @@ class BLEAdvReader :
                 idx     += 1
                 if dataLen > 0 :
                     idxEnd = idx + dataLen
-                    if idxEnd < advDataLen :
+                    if idxEnd <= advDataLen :
                         dataType = advData[idx]
                         data     = advData[idx+1:idxEnd]
                         self._advData[dataType] = data
